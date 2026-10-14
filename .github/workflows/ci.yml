@@ -45,11 +45,12 @@ jobs:
           cache: maven
 
       - name: Run OWASP Dependency-Check
-	env:
-          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        env:
+          NVD_API_KEY: "${{ secrets.NVD_API_KEY }}"
         run: >
           mvn --batch-mode
           org.owasp:dependency-check-maven:check
+          -DnvdApiKeyEnvironmentVariable=NVD_API_KEY
           -DfailBuildOnCVSS=11
           -Dformats=HTML
 
