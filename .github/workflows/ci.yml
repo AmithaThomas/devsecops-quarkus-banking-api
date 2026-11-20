@@ -53,4 +53,11 @@ jobs:
           -DnvdApiKeyEnvironmentVariable=NVD_API_KEY
           -DfailBuildOnCVSS=11
           -Dformats=HTML
-
+      - name: Upload Dependency-Check Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dependency-check-report
+          path: target/dependency-check-report.html
+          if-no-files-found: warn
+          retention-days: 30
